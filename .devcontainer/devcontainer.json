@@ -1,6 +1,14 @@
 {
   "name": "Python Data Science",
   "dockerFile": "Dockerfile",
+  "context": "..", // ← Critical! Points to project root (where requirements.txt lives)
+  "workspaceFolder": "/workspace", // Matches WORKDIR in Dockerfile
+  "remoteUser": "vscode",
+  "containerUser": "vscode",
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
   "extensions": [
     "ms-python.python"
   ],
