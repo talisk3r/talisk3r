@@ -12,11 +12,19 @@ RUN useradd -m vscode && \
 COPY --chown=vscode:vscode .devcontainer/.bashrc /home/vscode/.bashrc
 
 # Set working directory and permissions (convention for DevContainers)
-USER vscode
 WORKDIR /workspace
 
 # Copy requirements.txt from PROJECT ROOT to /workspace
 COPY requirements.txt .
+# COPY --chown=vscode:vscode requirements.txt .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
+
+# # Copy all project files (except what's in .dockerignore)
+COPY --chown=vscode:vscode . .
+
+COPY --chown=vscode:vscode .devcontainer/.bashrc /home/vscode/.bashrc
+
+USER vscode
+

@@ -5,7 +5,9 @@
   "workspaceFolder": "/workspace", // Matches WORKDIR in Dockerfile
   "remoteUser": "vscode",
   "containerUser": "vscode",
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode",
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,readonly"
+  ],
   "settings": {
     "terminal.integrated.defaultProfile.linux": "bash"
   },
@@ -15,5 +17,7 @@
   "forwardPorts": [
     8501
   ], // Streamlit/Flask port
+  // "postCreateCommand": "chown -R vscode:vscode /home/vscode",
+  // "postCreateCommand": "git config --global user.name 'Mathieu McKinnon' && git config --global user.email 'mathieu.mckinnon@gmail.com'",
   "postCreateCommand": "pip install -r requirements.txt"
 }
