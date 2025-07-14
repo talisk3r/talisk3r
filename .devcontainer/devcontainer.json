@@ -1,0 +1,11 @@
+{
+  "name": "Python Data Science",
+  "dockerFile": "Dockerfile",
+  "extensions": [
+    "ms-python.python"
+  ],
+  "forwardPorts": [
+    8501
+  ], // Streamlit/Flask port
+  "postCreateCommand": "pip install -r requirements.txt"
+}
