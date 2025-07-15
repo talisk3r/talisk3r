@@ -1,0 +1,9 @@
+
+<root>
+  <variable name="TestStock" type="stock" init="100"/>
+  <godleyTable>
+    <row account="Assets">
+      <cell op="inflow">TestFlow</cell>
+    </row>
+  </godleyTable>
+</root>
