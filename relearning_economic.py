@@ -68,6 +68,10 @@ model.connect("Recovery", [("Infected_pop", -1), ("Recovered_pop", 1)], "(1 - De
 
 model.print_godley_table()
 
+model.validate()
+
+model.describe()
+
 # Simulate
 history = model.simulate(days=100, dt=1.0)
 
@@ -94,8 +98,9 @@ history = model.simulate(days=100, dt=1.0)
 # print(f"Saved plot to {filename}")
 
 ################################################################################
-#TODO Units, Enable slider (min,max)
-#TODO check ALE is 0.
+# TODO Units, Enable slider (min,max)
+# TODO check ALE is 0.
+# TODO CSV In and out
 
 # Simulation parameter
 # Time_unit

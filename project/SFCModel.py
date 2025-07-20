@@ -26,6 +26,36 @@ class SFCModel:
         for stock, sign in legs:
             self.connections.append((flow_name, stock, sign))
 
+    def describe(self):
+        """Print the full structure of the model: stocks, parameters, flows, and connections."""
+        print("📦 Stocks (initial values):")
+        for k, v in self.stocks.items():
+            print(f"  {k} = {v}")
+
+        print("\n⚙️ Parameters:")
+        for k, v in self.parameters.items():
+            print(f"  {k} = {v}")
+
+        print("\n🔁 Flows (expressions):")
+        for flow, expr in self.flows.items():
+            print(f"  {flow}: {expr}")
+
+        print("\n📶 Flow Connections (legs):")
+        for flow, stock, sign in self.connections:
+            direction = "→" if sign == 1 else "←"
+            print(f"  {flow} {direction} {stock}")
+
+
+    def validate(self):
+        """Warn if any flow has a division by zero at current state."""
+        for flow, expr in self.flows.items():
+            try:
+                _ = self.evaluate_flow(expr)
+            except ZeroDivisionError:
+                print(f"⚠️ Division by zero in flow: {flow}")
+            except NameError as e:
+                print(f"❌ Undefined variable in {flow}: {e}")
+
     def evaluate_flow(self, expr):
         env = {}
         env.update(self.stocks)
